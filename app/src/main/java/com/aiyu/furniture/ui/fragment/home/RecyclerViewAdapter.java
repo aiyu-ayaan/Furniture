@@ -41,7 +41,7 @@ public class RecyclerViewAdapter extends ListAdapter<Furniture, RecyclerViewAdap
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Furniture furniture = getItem(position);
-
+        holder.bindData(furniture);
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
