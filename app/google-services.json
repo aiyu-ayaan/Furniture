@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "847720354866",
+    "project_id": "furniture-b5f76",
+    "storage_bucket": "furniture-b5f76.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847720354866:android:5636001bc082373ab0182b",
+        "android_client_info": {
+          "package_name": "com.aiyu.furniture"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF60kPimvNuxf4Rg39sDpwmMXjLh_Rv0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
