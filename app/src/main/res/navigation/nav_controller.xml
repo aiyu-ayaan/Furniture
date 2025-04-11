@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/editDetailsFragment"
         android:name="com.aiyu.furniture.ui.fragment.profile.edit.EditDetailsFragment"
-        android:label="fragment_edit_details"
+        android:label="Edit Details"
         tools:layout="@layout/fragment_edit_details">
         <argument
             android:name="user"

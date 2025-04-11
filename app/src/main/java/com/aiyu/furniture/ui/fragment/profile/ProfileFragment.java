@@ -46,13 +46,19 @@ public class ProfileFragment extends BaseFragment {
                 Glide.with(requireContext()).load(user.getProfilePic()).into(binding.imageViewProfile);
                 binding.profileName.setText(user.getName());
                 binding.profileEmail.setText(user.getEmail());
-                binding.phoneLayout.getEditText().setText((user.getPhone() == null || user.getPhone().isBlank()) ? "Not Provided" : user.getPhone());
-                binding.addressLayout.getEditText().setText((user.getAddress() == null || user.getAddress().isBlank()) ? "Not Provided" : user.getAddress());
-                binding.phoneLayout.setEndIconOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(requireContext(), "Click", Toast.LENGTH_SHORT).show();
-                    }
+                if (binding.phoneLayout.getEditText() != null) {
+                    binding.phoneLayout.getEditText().setText((user.getPhone() == null || user.getPhone().isBlank()) ? "Not Provided" : user.getPhone());
+                }
+                if (binding.addressLayout.getEditText() != null) {
+                    binding.addressLayout.getEditText().setText((user.getAddress() == null || user.getAddress().isBlank()) ? "Not Provided" : user.getAddress());
+                }
+                binding.phoneLayout.setEndIconOnClickListener(view2 -> {
+                    var action = ProfileFragmentDirections.actionProfileFragmentToEditDetailsFragment(user);
+                    Navigation.findNavController(binding.getRoot()).navigate(action);
+                });
+                binding.addressLayout.setEndIconOnClickListener(view1 -> {
+                    var action = ProfileFragmentDirections.actionProfileFragmentToEditDetailsFragment(user);
+                    Navigation.findNavController(binding.getRoot()).navigate(action);
                 });
             }
         });

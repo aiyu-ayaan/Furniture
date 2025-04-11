@@ -33,11 +33,12 @@ public class DetailFragment extends BaseFragment {
         binding.textViewProductName.setText(model.getName());
         binding.textViewDescription.setText(model.getDescription());
         binding.textViewPrice.setText("₹ " + model.getPrice());
+        binding.textViewTotal.setText("₹ " + (quantity * model.getPrice()));
         binding.iconButtonAdd.setOnClickListener(view1 -> {
             if (quantity < 10) {
                 quantity++;
                 binding.textViewQuantity.setText(String.valueOf(quantity));
-                binding.textViewTotal.setText("Total: ₹ " + (quantity * model.getPrice()));
+                binding.textViewTotal.setText("₹ " + (quantity * model.getPrice()));
             }
         });
         binding.iconButtonRemove.setOnClickListener(view1 -> {

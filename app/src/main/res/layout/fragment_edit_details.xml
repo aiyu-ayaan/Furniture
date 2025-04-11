@@ -27,7 +27,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:focusable="true"
+                android:inputType="textMultiLine|textCapSentences"
                 android:paddingEnd="40dp"
                 android:textColor="@color/black"
                 tools:text="123 Main Street, Anytown, State 12345" />
@@ -47,7 +48,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
+                android:focusable="true"
+                android:inputType="phone"
+                android:maxLength="10"
                 android:paddingEnd="40dp"
                 android:textColor="@color/black"
                 tools:text="+91 1234567890" />
