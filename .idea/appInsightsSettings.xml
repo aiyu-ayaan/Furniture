@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.aiyu.furniture" />
+                  <option name="mobileSdkAppId" value="1:847720354866:android:5636001bc082373ab0182b" />
+                  <option name="projectId" value="furniture-b5f76" />
+                  <option name="projectNumber" value="847720354866" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

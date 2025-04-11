@@ -17,14 +17,6 @@ public class Furniture implements Serializable {
     private int star;
 
 
-    public Furniture(String name, String description, String imageUrl, Category category, String path) {
-        this.name = name;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.category = category;
-        this.path = path;
-    }
-
     public Furniture(String name, String description, String imageUrl, Category category, String path, Long price, int star) {
         this.name = name;
         this.description = description;

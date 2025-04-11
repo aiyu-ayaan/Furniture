@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/surface"
-    android:padding="@dimen/grid_2"
+    android:paddingHorizontal="@dimen/grid_2"
+    android:paddingVertical="@dimen/grid_1"
     tools:context="com.aiyu.furniture.ui.fragment.home.HomeFragment">
 
     <HorizontalScrollView
