@@ -2,15 +2,10 @@ package com.aiyu.furniture.core.database.model;
 
 import androidx.annotation.Keep;
 
-enum Category {
-    CHAIR,
-    SOFA,
-    LAMP,
-    BED
-}
+import java.io.Serializable;
 
 @Keep
-public class Furniture {
+public class Furniture implements Serializable {
     private String name;
     private String description;
     private String imageUrl;
@@ -20,7 +15,6 @@ public class Furniture {
     private Long price;
 
     private int star;
-
 
 
     public Furniture(String name, String description, String imageUrl, Category category, String path) {

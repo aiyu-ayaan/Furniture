@@ -2,8 +2,10 @@ package com.aiyu.furniture.core.database.model;
 
 import androidx.annotation.Keep;
 
+import java.io.Serializable;
+
 @Keep
-public class User {
+public class User implements Serializable {
     private String name;
     private String email;
     private String phone;

@@ -48,10 +48,18 @@
         android:id="@+id/detailFragment"
         android:name="com.aiyu.furniture.ui.fragment.detail.DetailFragment"
         android:label="fragment_detail_screen"
-        tools:layout="@layout/fragment_detail_screen" />
+        tools:layout="@layout/fragment_detail_screen" >
+        <argument
+            android:name="item"
+            app:argType="com.aiyu.furniture.core.database.model.Furniture" />
+    </fragment>
     <fragment
         android:id="@+id/editDetailsFragment"
         android:name="com.aiyu.furniture.ui.fragment.profile.edit.EditDetailsFragment"
         android:label="fragment_edit_details"
-        tools:layout="@layout/fragment_edit_details" />
+        tools:layout="@layout/fragment_edit_details" >
+        <argument
+            android:name="user"
+            app:argType="com.aiyu.furniture.core.database.model.User" />
+    </fragment>
 </navigation>
