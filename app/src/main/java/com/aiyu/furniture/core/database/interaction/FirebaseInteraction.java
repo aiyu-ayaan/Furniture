@@ -1,11 +1,13 @@
 package com.aiyu.furniture.core.database.interaction;
 
 
+import com.aiyu.furniture.core.database.model.FurnitureModel;
 import com.aiyu.furniture.core.database.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -57,10 +59,30 @@ public class FirebaseInteraction {
         });
     }
 
+
     public void logOut(Consumer<Void> onLoggedOut) {
         firebaseAuth.signOut();
         onLoggedOut.accept(null);
     }
 
+    public void getFurnitureData(
+            BiConsumer<List<FurnitureModel>, Exception> onSuccess
+    ) {
+        firebaseFirestore.collection("furniture")
+                .addSnapshotListener(
+                        (value, error) -> {
+                            if (error != null) {
+                                onSuccess.accept(null, error);
+                                return;
+                            }
+                            if (value != null && !value.isEmpty()) {
+                                List<FurnitureModel> furnitureList = value.toObjects(FurnitureModel.class);
+                                onSuccess.accept(furnitureList, null);
+                            } else {
+                                onSuccess.accept(null, new Exception("No data found"));
+                            }
+                        }
+                );
 
+    }
 }

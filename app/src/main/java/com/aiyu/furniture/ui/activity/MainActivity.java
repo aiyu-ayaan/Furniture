@@ -5,6 +5,8 @@ import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -15,28 +17,27 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.aiyu.furniture.R;
 import com.aiyu.furniture.databinding.ActivityMainBinding;
+import com.aiyu.furniture.utils.GetItems;
 import com.aiyu.furniture.utils.Items;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GetItems {
 
 
     private NavController navController;
     private AppBarConfiguration appBarConfiguration;
+    private ActivityMainBinding binding;
     @Inject
     Items items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        var binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -61,6 +62,16 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 binding.bottomNavigationView.setVisibility(View.GONE);
             }
+            if (navDestination.getId() == R.id.detailFragment || navDestination.getId() == R.id.logInFragment) {
+                binding.toolbar.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.blue_color, null));
+            } else {
+                binding.toolbar.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.surface, null));
+            }
+            if (navDestination.getId() == R.id.logInFragment) {
+                binding.toolbar.setVisibility(View.GONE);
+            } else {
+                binding.toolbar.setVisibility(View.VISIBLE);
+            }
         });
 
 //        ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -69,8 +80,14 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
+
     @Override
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return binding.toolbar;
     }
 }

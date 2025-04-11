@@ -8,26 +8,34 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aiyu.furniture.core.database.model.Furniture;
+import com.aiyu.furniture.R;
+import com.aiyu.furniture.core.database.model.FurnitureModel;
 import com.aiyu.furniture.databinding.ItemFurnitureBinding;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
-public class RecyclerViewAdapter extends ListAdapter<Furniture, RecyclerViewAdapter.ItemViewHolder> {
+public class RecyclerViewAdapter extends ListAdapter<FurnitureModel, RecyclerViewAdapter.ItemViewHolder> {
+
+    public interface SetOnClickListener {
+        void onClick(FurnitureModel furnitureModel);
+    }
+
+    private SetOnClickListener onClickListener;
+
+    public void setItemOnClickListener(SetOnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
 
     protected RecyclerViewAdapter() {
-        super(new DiffUtil.ItemCallback<Furniture>() {
+        super(new DiffUtil.ItemCallback<>() {
             @Override
-            public boolean areItemsTheSame(@NonNull Furniture oldItem, @NonNull Furniture newItem) {
+            public boolean areItemsTheSame(@NonNull FurnitureModel oldItem, @NonNull FurnitureModel newItem) {
                 return oldItem.getPath().equals(newItem.getPath());
             }
 
             @Override
-            public boolean areContentsTheSame(@NonNull Furniture oldItem, @NonNull Furniture newItem) {
-                return
-                        oldItem.getDescription().equals(newItem.getDescription()) &&
-                                oldItem.getImageUrl().equals(newItem.getImageUrl()) &&
-                                oldItem.getName().equals(newItem.getName()) &&
-                                oldItem.getPrice().equals(newItem.getPrice()) &&
-                                oldItem.getStar() == newItem.getStar();
+            public boolean areContentsTheSame(@NonNull FurnitureModel oldItem, @NonNull FurnitureModel newItem) {
+                return oldItem.getPath().equals(newItem.getPath());
             }
         });
     }
@@ -40,8 +48,8 @@ public class RecyclerViewAdapter extends ListAdapter<Furniture, RecyclerViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Furniture furniture = getItem(position);
-        holder.bindData(furniture);
+        FurnitureModel furnitureModel = getItem(position);
+        holder.bindData(furnitureModel);
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -53,10 +61,14 @@ public class RecyclerViewAdapter extends ListAdapter<Furniture, RecyclerViewAdap
             this.binding = binding;
         }
 
-        public void bindData(Furniture furniture) {
-            binding.textViewProductName.setText(furniture.getName());
-            binding.textViewPrice.setText(furniture.getPrice().toString());
-            binding.textViewRating.setText(furniture.getStar());
+        public void bindData(FurnitureModel furnitureModel) {
+            binding.textViewProductName.setText(furnitureModel.getName());
+            binding.textViewPrice.setText("₹ " + furnitureModel.getPrice());
+            binding.textViewRating.setText(String.valueOf(furnitureModel.getStar()));
+            Glide.with(binding.getRoot()).load(R.drawable.login_screen_img).fitCenter().error(R.drawable.login_screen_img).transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageViewProduct);
+            binding.getRoot().setOnClickListener(v -> {
+                if (onClickListener != null) onClickListener.onClick(furnitureModel);
+            });
         }
     }
 }

@@ -5,7 +5,7 @@ import androidx.annotation.Keep;
 import java.io.Serializable;
 
 @Keep
-public class Furniture implements Serializable {
+public class FurnitureModel implements Serializable {
     private String name;
     private String description;
     private String imageUrl;
@@ -17,7 +17,7 @@ public class Furniture implements Serializable {
     private int star;
 
 
-    public Furniture(String name, String description, String imageUrl, Category category, String path, Long price, int star) {
+    public FurnitureModel(String name, String description, String imageUrl, Category category, String path, Long price, int star) {
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -27,6 +27,8 @@ public class Furniture implements Serializable {
         this.star = star;
     }
 
+    public FurnitureModel() {
+    }
 
     public String getName() {
         return name;

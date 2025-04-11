@@ -60,9 +60,7 @@ public class LogInFragment extends BaseFragment {
                 return;
             }
             if (user != null) {
-                User mUser = new User(user.getDisplayName(), user.getEmail(), user.getPhoneNumber(),
-                        null, Objects.requireNonNull(user.getPhotoUrl()).toString(),
-                        user.getUid());
+                User mUser = new User(user.getDisplayName(), user.getEmail(), user.getPhoneNumber(), null, Objects.requireNonNull(user.getPhotoUrl()).toString(), user.getUid());
                 logInViewModel.insertUser(mUser, e -> {
                     if (e != null) {
                         Log.e(TAG, "onViewCreated: " + e.getMessage());

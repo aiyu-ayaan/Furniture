@@ -5,6 +5,8 @@
     style="?attr/materialCardViewFilledStyle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/grid_0_25"
+    android:layout_marginVertical="@dimen/grid_0_25"
     app:cardBackgroundColor="@color/white">
 
     <LinearLayout
@@ -14,12 +16,14 @@
         android:padding="@dimen/grid_1">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_product_image"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             app:cardBackgroundColor="#84a7a9"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.TopRounded">
 
             <ImageView
+                android:id="@+id/image_view_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
@@ -39,6 +43,8 @@
                 android:layout_marginVertical="@dimen/grid_1"
                 android:layout_marginTop="@dimen/grid_1"
                 android:layout_weight="4"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textAppearance="?attr/textAppearanceCaption"
                 tools:text="@string/app_name" />
 
