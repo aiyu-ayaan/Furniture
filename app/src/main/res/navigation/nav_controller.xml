@@ -20,7 +20,11 @@
         android:id="@+id/homeFragment"
         android:name="com.aiyu.furniture.ui.fragment.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.aiyu.furniture.ui.fragment.cart.CartFragment"
@@ -36,5 +40,18 @@
             app:destination="@id/logInFragment"
             app:popUpTo="@id/nav_controller"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_editDetailsFragment"
+            app:destination="@id/editDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.aiyu.furniture.ui.fragment.detail.DetailFragment"
+        android:label="fragment_detail_screen"
+        tools:layout="@layout/fragment_detail_screen" />
+    <fragment
+        android:id="@+id/editDetailsFragment"
+        android:name="com.aiyu.furniture.ui.fragment.profile.edit.EditDetailsFragment"
+        android:label="fragment_edit_details"
+        tools:layout="@layout/fragment_edit_details" />
 </navigation>

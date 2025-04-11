@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Material3.CardView.Filled"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="#84a7a9"
+    app:cardCornerRadius="0dp"
+    tools:context="com.aiyu.furniture.ui.fragment.detail.DetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/grid_2">
+
+        <ImageView
+            android:id="@+id/image_view_product"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8"
+            tools:src="@drawable/login_screen_img" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Material3.CardView.Filled"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/grid_1"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/grid_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_product">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/grid_2"
+                android:paddingTop="@dimen/grid_7">
+
+                <TextView
+                    android:id="@+id/text_view_product_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/grid_1"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
+                    app:layout_constraintEnd_toStartOf="@+id/text_view_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/app_name" />
+
+                <TextView
+                    android:id="@+id/text_view_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/grid_1"
+                    android:gravity="start"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="4 $" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/grid_1"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_product_name" />
+
+                <TextView
+                    android:id="@+id/text_view_description_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/grid_1"
+                    android:drawablePadding="@dimen/grid_1"
+                    android:gravity="start"
+                    android:textAppearance="?attr/textAppearanceListItemSmall"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider"
+                    tools:text="Description" />
+
+                <TextView
+                    android:id="@+id/text_view_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/grid_1"
+                    android:drawablePadding="@dimen/grid_1"
+                    android:gravity="start"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_description_title"
+                    tools:text="Chips allow users to enter information, make selections, filter content, or trigger actions. While buttons are expected to appear consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements." />
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/grid_1"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_description">
+
+                    <Button
+                        android:id="@+id/icon_button_add"
+                        style="?attr/materialIconButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/blank"
+                        app:icon="@drawable/baseline_add_24" />
+
+                    <TextView
+                        android:id="@+id/text_view_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="2" />
+
+                    <Button
+                        android:id="@+id/icon_button_remove"
+                        style="?attr/materialIconButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/blank"
+                        app:icon="@drawable/baseline_remove_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/grid_1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/linear_layout_items"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_description">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/grid_1"
+                        android:text="$8"
+                        android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

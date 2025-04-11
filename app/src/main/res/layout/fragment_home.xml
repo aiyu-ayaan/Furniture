@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/surface"
+    android:padding="@dimen/grid_2"
     tools:context="com.aiyu.furniture.ui.fragment.home.HomeFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/home"
-        android:textAppearance="?attr/textAppearanceHeadline4" />
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/all"
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/grid_1"
+                android:checked="true"
+                android:text="All" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chair"
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/grid_1"
+                android:text="Chair" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/Sofa"
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/grid_1"
+                android:text="Sofa" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/lamp"
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/grid_1"
+                android:text="Lamp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/bed"
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="bed" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
 </RelativeLayout>
