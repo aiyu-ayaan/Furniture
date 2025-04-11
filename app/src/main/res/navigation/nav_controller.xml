@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/logInFragment"
         android:name="com.aiyu.furniture.ui.fragment.login.LogInFragment"
-        android:label="fragment_login"
+        android:label="@string/blank"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_logInFragment_to_homeFragment"
@@ -19,18 +19,18 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.aiyu.furniture.ui.fragment.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.aiyu.furniture.ui.fragment.cart.CartFragment"
-        android:label="fragment_cart"
+        android:label="@string/cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.aiyu.furniture.ui.fragment.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_logInFragment"
             app:destination="@id/logInFragment"

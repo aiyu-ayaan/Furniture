@@ -9,7 +9,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.aiyu.furniture.R;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private NavController navController;
+    private  AppBarConfiguration appBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
                 navController
         );
 
+        appBarConfiguration =
+                new AppBarConfiguration.Builder(navController.getGraph()).build();
+
+        NavigationUI.setupWithNavController(
+                binding.toolbar, navController, appBarConfiguration);
+
         binding.bottomNavigationView.setOnItemReselectedListener(item -> {
         });
         navController
@@ -56,5 +65,11 @@ public class MainActivity extends AppCompatActivity {
                         binding.bottomNavigationView.setVisibility(View.GONE);
                     }
                 });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }

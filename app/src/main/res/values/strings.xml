@@ -10,4 +10,7 @@
     <string name="address">Address</string>
     <string name="logout">Logout</string>
     <string name="loading">Loading..</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="save">Save</string>
+    <string name="blank"> </string>
 </resources>
