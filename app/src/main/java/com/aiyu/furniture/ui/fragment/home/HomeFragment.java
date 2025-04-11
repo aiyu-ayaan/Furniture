@@ -11,8 +11,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.aiyu.furniture.R;
+import com.aiyu.furniture.core.database.model.Category;
 import com.aiyu.furniture.databinding.FragmentHomeBinding;
 import com.aiyu.furniture.utils.BaseFragment;
+
+import java.util.stream.Collectors;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -44,38 +47,48 @@ public class HomeFragment extends BaseFragment {
             var action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(furnitureModel);
             Navigation.findNavController(binding.getRoot()).navigate(action);
         });
+
         homeViewModel.getFurnitureData((furnitureModels, e) -> {
             if (e != null) {
                 Toast.makeText(requireContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (furnitureModels != null) {
-                adapter.submitList(furnitureModels);
-            }
+
+            // Set the initial data - show all items by default
+            adapter.submitList(furnitureModels);
+
+            // Make sure "all" chip is checked by default
+            binding.chipGroup.check(R.id.all);
+
+            binding.chipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+                if (checkedIds.isEmpty()) {
+                    // If nothing is selected, automatically select "all"
+                    binding.chipGroup.check(R.id.all);
+                    adapter.submitList(furnitureModels);
+                    return;
+                }
+
+                int id = checkedIds.get(0);
+                if (id == R.id.chair) {
+                    adapter.submitList(furnitureModels.stream().filter(furnitureModel -> furnitureModel.getCategory().name().equals(Category.CHAIR.name())).collect(Collectors.toList()));
+                    return;
+                }
+                if (id == R.id.sofa) {
+                    adapter.submitList(furnitureModels.stream().filter(furnitureModel -> furnitureModel.getCategory().name().equals(Category.SOFA.name())).collect(Collectors.toList()));
+                    return;
+                }
+                if (id == R.id.bed) {
+                    adapter.submitList(furnitureModels.stream().filter(furnitureModel -> furnitureModel.getCategory().name().equals(Category.BED.name())).collect(Collectors.toList()));
+                    return;
+                }
+                if (id == R.id.lamp) {
+                    adapter.submitList(furnitureModels.stream().filter(furnitureModel -> furnitureModel.getCategory().name().equals(Category.LAMP.name())).collect(Collectors.toList()));
+                    return;
+                }
+                if (id == R.id.all) {
+                    adapter.submitList(furnitureModels);
+                }
+            });
         });
-//        binding.chipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
-////                if (checkedIds.size() == 0) {
-////                    adapter.submitList(null);
-////                    return;
-////                }
-////                int id = checkedIds.get(0);
-////                switch (id) {
-////                    case R.id.all:
-////                        adapter.submitList(new ArrayList<>());
-////                        break;
-////                    case R.id.chair:
-////                        adapter.submitList(new ArrayList<>());
-////                        break;
-////                    case R.id.sofa:
-////                        adapter.submitList(new ArrayList<>());
-////                        break;
-////                    case R.id.bed:
-////                        adapter.submitList(new ArrayList<>());
-////                        break;
-////                    case R.id.lamp:
-////                        adapter.submitList(new ArrayList<>());
-////                        break;
-////                }
-//        });
     }
 }
