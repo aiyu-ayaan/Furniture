@@ -19,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class EditDetailsFragment extends BaseFragment {
-    private EditDetailsFragmentArgs args;
     private FragmentEditDetailsBinding binding;
 
     public EditDetailsFragment() {
@@ -33,7 +32,7 @@ public class EditDetailsFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding = FragmentEditDetailsBinding.bind(view);
-        args = EditDetailsFragmentArgs.fromBundle(getArguments());
+        EditDetailsFragmentArgs args = EditDetailsFragmentArgs.fromBundle(getArguments());
         var user = args.getUser();
         binding.phoneLayout.getEditText().setText((user.getPhone() == null || user.getPhone().isBlank()) ? "" : user.getPhone());
         binding.addressLayout.getEditText().setText((user.getAddress() == null || user.getAddress().isBlank()) ? "" : user.getAddress());
