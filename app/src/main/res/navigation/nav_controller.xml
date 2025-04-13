@@ -69,4 +69,9 @@
             android:name="user"
             app:argType="com.aiyu.furniture.core.database.model.User" />
     </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.aiyu.furniture.ui.fragment.orders.OrdersFragment"
+        android:label="@string/orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>

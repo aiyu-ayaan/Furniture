@@ -50,14 +50,19 @@ public class MainActivity extends AppCompatActivity implements GetItems {
         else throw new IllegalStateException("NavHostFragment not found");
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
 
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.cartFragment, R.id.profileFragment, R.id.logInFragment).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.cartFragment,
+                R.id.profileFragment, R.id.logInFragment, R.id.ordersFragment
+        ).build();
 
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration);
 
         binding.bottomNavigationView.setOnItemReselectedListener(item -> {
         });
         navController.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
-            if (navDestination.getId() == R.id.homeFragment || navDestination.getId() == R.id.cartFragment || navDestination.getId() == R.id.profileFragment) {
+            if (navDestination.getId() == R.id.homeFragment ||
+                    navDestination.getId() == R.id.cartFragment
+                    || navDestination.getId() == R.id.ordersFragment
+                    || navDestination.getId() == R.id.profileFragment) {
                 binding.bottomNavigationView.setVisibility(View.VISIBLE);
             } else {
                 binding.bottomNavigationView.setVisibility(View.GONE);
