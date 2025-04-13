@@ -13,4 +13,5 @@
     <string name="edit_address">Edit Address</string>
     <string name="save">Save</string>
     <string name="blank"> </string>
+    <string name="your_cart_is_empty">Your cart is empty</string>
 </resources>

@@ -5,9 +5,11 @@ public class OrderModel {
     private FurnitureModel furniture;
     private Long orderedAt;
     private String path;
-    private final double price;
-    private final OrderStates orderState;
+    private double price;
+    private OrderStates orderState;
 
+    public OrderModel() {
+    }
 
     public OrderModel(FurnitureModel furniture, Long orderedAt, String path, Double price) {
         this.furniture = furniture;

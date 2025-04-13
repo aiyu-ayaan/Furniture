@@ -29,7 +29,11 @@
         android:id="@+id/cartFragment"
         android:name="com.aiyu.furniture.ui.fragment.cart.CartFragment"
         android:label="@string/cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.aiyu.furniture.ui.fragment.profile.ProfileFragment"
@@ -52,6 +56,9 @@
         <argument
             android:name="item"
             app:argType="com.aiyu.furniture.core.database.model.FurnitureModel" />
+        <argument
+            android:name="fromCart"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/editDetailsFragment"

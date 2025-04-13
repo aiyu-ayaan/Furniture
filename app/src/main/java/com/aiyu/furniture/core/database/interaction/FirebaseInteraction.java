@@ -96,14 +96,16 @@ public class FirebaseInteraction {
         });
     }
 
-    public void addItemToCart(String uid, CartModel cartModel, Consumer<Exception> onItemAdded) {
+    public void addItemToCart(CartModel cartModel, Consumer<Exception> onItemAdded) {
+        String uid = firebaseAuth.getUid();
         var ref = firebaseFirestore.collection(USER_DATABASE_PATH).document(uid).collection(CART_DATABASE_PATH);
         ref.document(cartModel.getItems().getPath()).set(cartModel).addOnSuccessListener(aVoid -> {
             onItemAdded.accept(null);
         }).addOnFailureListener(onItemAdded::accept);
     }
 
-    public void getCartItems(String uid, BiConsumer<List<CartModel>, Exception> onSuccess) {
+    public void getCartItems(BiConsumer<List<CartModel>, Exception> onSuccess) {
+        String uid = firebaseAuth.getUid();
         var ref = firebaseFirestore.collection(USER_DATABASE_PATH).document(uid).collection(CART_DATABASE_PATH);
         ref.addSnapshotListener((value, error) -> {
             if (error != null) {
@@ -119,7 +121,8 @@ public class FirebaseInteraction {
         });
     }
 
-    public void removeItemFromCart(String uid, String path, Consumer<Exception> onItemRemoved) {
+    public void removeItemFromCart(String path, Consumer<Exception> onItemRemoved) {
+        String uid = firebaseAuth.getUid();
         var ref = firebaseFirestore.collection(USER_DATABASE_PATH).document(uid).collection(CART_DATABASE_PATH);
         ref.document(path).delete().addOnSuccessListener(aVoid -> {
             onItemRemoved.accept(null);
@@ -127,7 +130,8 @@ public class FirebaseInteraction {
     }
 
 
-    public void addOrder(String uid, OrderModel orderModel, Consumer<Exception> onOrderAdded) {
+    public void addOrder(OrderModel orderModel, Consumer<Exception> onOrderAdded) {
+        String uid = firebaseAuth.getUid();
         var ref = firebaseFirestore.collection(USER_DATABASE_PATH)
                 .document(uid)
                 .collection(ORDER_DATABASE_PATH);
@@ -138,7 +142,8 @@ public class FirebaseInteraction {
         }).addOnFailureListener(onOrderAdded::accept);
     }
 
-    public void getOrders(String uid, BiConsumer<List<OrderModel>, Exception> onSuccess) {
+    public void getOrders(BiConsumer<List<OrderModel>, Exception> onSuccess) {
+        String uid = firebaseAuth.getUid();
         var ref = firebaseFirestore.collection(USER_DATABASE_PATH).document(uid).collection(ORDER_DATABASE_PATH);
         ref.addSnapshotListener((value, error) -> {
             if (error != null) {

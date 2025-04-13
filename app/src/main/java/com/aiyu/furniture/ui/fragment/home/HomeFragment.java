@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment {
         binding.recyclerViewFurniture.setHasFixedSize(true);
         binding.recyclerViewFurniture.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         adapter.setItemOnClickListener(furnitureModel -> {
-            var action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(furnitureModel);
+            var action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(furnitureModel,false);
             Navigation.findNavController(binding.getRoot()).navigate(action);
         });
 

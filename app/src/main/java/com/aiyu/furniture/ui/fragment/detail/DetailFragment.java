@@ -2,15 +2,23 @@ package com.aiyu.furniture.ui.fragment.detail;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 
 import com.aiyu.furniture.R;
+import com.aiyu.furniture.core.database.interaction.FirebaseInteraction;
+import com.aiyu.furniture.core.database.model.CartModel;
 import com.aiyu.furniture.databinding.FragmentDetailScreenBinding;
 import com.aiyu.furniture.utils.BaseFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -23,6 +31,9 @@ public class DetailFragment extends BaseFragment {
     private FragmentDetailScreenBinding binding;
     private DetailFragmentArgs args;
     private int quantity = 1;
+
+    @Inject
+    FirebaseInteraction firebaseInteraction;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -47,11 +58,19 @@ public class DetailFragment extends BaseFragment {
                 binding.textViewQuantity.setText(String.valueOf(quantity));
             }
         });
-        Glide.with(binding.getRoot())
-                .load(R.drawable.login_screen_img)
-                .fitCenter().error(R.drawable.login_screen_img)
-                .transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageViewProduct);
+        Glide.with(binding.getRoot()).load(R.drawable.login_screen_img).fitCenter().error(R.drawable.login_screen_img).transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageViewProduct);
 
-
+        binding.buttonAddToCart.setVisibility(args.getFromCart() ? View.GONE : View.VISIBLE);
+        binding.buttonAddToCart.setOnClickListener(view1 -> {
+            firebaseInteraction.addItemToCart(new CartModel(model, quantity), e -> {
+                if (e == null) {
+                    binding.buttonAddToCart.setEnabled(true);
+                    Toast.makeText(getContext(), "Added to cart", Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(binding.getRoot()).navigateUp();
+                    return;
+                }
+                Toast.makeText(getContext(), Objects.requireNonNull(e.getLocalizedMessage()), Toast.LENGTH_SHORT).show();
+            });
+        });
     }
 }
