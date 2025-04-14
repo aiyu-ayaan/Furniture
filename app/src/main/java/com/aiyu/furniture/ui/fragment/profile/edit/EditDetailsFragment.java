@@ -38,8 +38,7 @@ public class EditDetailsFragment extends BaseFragment {
 
         binding.buttonSave.setOnClickListener(v -> {
             var phone = binding.phoneLayout.getEditText().getText().toString();
-            var address = binding.addressLayout.getEditText().getText().toString();
-            if (phone.isEmpty() || address.isEmpty()) {
+            if (phone.isEmpty()) {
                 Toast.makeText(requireContext(), "Can't be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
