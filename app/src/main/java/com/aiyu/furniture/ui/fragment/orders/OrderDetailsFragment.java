@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.aiyu.furniture.R;
 import com.aiyu.furniture.databinding.FragmentOrderDetailsBinding;
 import com.aiyu.furniture.utils.BaseFragment;
+import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,6 +48,10 @@ public class OrderDetailsFragment extends BaseFragment {
         binding.textViewDeliveryFee.setText("₹ " + 50);
 
         binding.textViewTotal.setText("₹ " + (orderDetails.getPrice() + 50));
+        Glide.with(binding.getRoot())
+                .load(R.drawable.login_screen_img)
+                .centerCrop()
+                .into(binding.imageViewProduct);
     }
 
 

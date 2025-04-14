@@ -138,7 +138,7 @@ public class FirebaseInteraction {
         var ref = firebaseFirestore.collection(USER_DATABASE_PATH)
                 .document(uid)
                 .collection(ORDER_DATABASE_PATH);
-        var path = ref.getId();
+        var path = ref.document().getId();
         orderModel.setPath(path);
         ref.document(path).set(orderModel).addOnSuccessListener(aVoid -> {
             onOrderAdded.accept(null);

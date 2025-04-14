@@ -83,7 +83,8 @@ public class AddAddressFragment extends BaseFragment {
             }
 
             AddressModel addressModel = new AddressModel(name, phone, houseName, area, landmark, postalCode, state);
-            if (args != null) addressModel.setPath(args.getAddress().getPath());
+            if (args != null && args.getAddress() != null)
+                addressModel.setPath(args.getAddress().getPath());
             else addressModel.setPath();
             firebaseInteraction.addAddress(addressModel, e -> {
                 if (e != null) {
