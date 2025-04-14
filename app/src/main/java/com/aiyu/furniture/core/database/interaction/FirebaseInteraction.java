@@ -1,6 +1,7 @@
 package com.aiyu.furniture.core.database.interaction;
 
 
+import com.aiyu.furniture.core.database.model.AddressModel;
 import com.aiyu.furniture.core.database.model.CartModel;
 import com.aiyu.furniture.core.database.model.FurnitureModel;
 import com.aiyu.furniture.core.database.model.OrderModel;
@@ -23,6 +24,8 @@ public class FirebaseInteraction {
     private static final String USER_DATABASE_PATH = "User";
     private static final String CART_DATABASE_PATH = "Cart";
     private static final String ORDER_DATABASE_PATH = "Order";
+
+    private static final String ADDRESS_DATABASE_PATH = "Address";
     private static final String FURNITURE_DATABASE_PATH = "furniture";
     private final FirebaseFirestore firebaseFirestore;
     private final FirebaseAuth firebaseAuth;
@@ -157,5 +160,13 @@ public class FirebaseInteraction {
                 onSuccess.accept(null, new Exception("No data found"));
             }
         });
+    }
+
+    public void addAddress(AddressModel addressModel, Consumer<Exception> onAddressAdded) {
+        String uid = firebaseAuth.getUid();
+        var ref = firebaseFirestore.collection(USER_DATABASE_PATH).document(uid).collection(ADDRESS_DATABASE_PATH);
+        ref.document(addressModel.getPath()).set(addressModel).addOnSuccessListener(aVoid -> {
+            onAddressAdded.accept(null);
+        }).addOnFailureListener(onAddressAdded::accept);
     }
 }
