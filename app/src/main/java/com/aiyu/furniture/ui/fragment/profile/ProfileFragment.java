@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.aiyu.furniture.NavControllerDirections;
 import com.aiyu.furniture.R;
 import com.aiyu.furniture.databinding.FragmentProfileBinding;
 import com.aiyu.furniture.utils.BaseFragment;
@@ -49,17 +50,16 @@ public class ProfileFragment extends BaseFragment {
                 if (binding.phoneLayout.getEditText() != null) {
                     binding.phoneLayout.getEditText().setText((user.getPhone() == null || user.getPhone().isBlank()) ? "Not Provided" : user.getPhone());
                 }
-                if (binding.addressLayout.getEditText() != null) {
-                    binding.addressLayout.getEditText().setText((user.getAddress() == null || user.getAddress().isBlank()) ? "Not Provided" : user.getAddress());
-                }
                 binding.phoneLayout.setEndIconOnClickListener(view2 -> {
                     var action = ProfileFragmentDirections.actionProfileFragmentToEditDetailsFragment(user);
                     Navigation.findNavController(binding.getRoot()).navigate(action);
                 });
-                binding.addressLayout.setEndIconOnClickListener(view1 -> {
-                    var action = ProfileFragmentDirections.actionProfileFragmentToEditDetailsFragment(user);
-                    Navigation.findNavController(binding.getRoot()).navigate(action);
-                });
+                binding.savedAddressButton.setOnClickListener(
+                        view1 -> {
+                            var action = NavControllerDirections.actionGlobalAddressFragment(false);
+                            Navigation.findNavController(binding.getRoot()).navigate(action);
+                        }
+                );
             }
         });
 
