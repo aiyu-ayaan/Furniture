@@ -94,7 +94,7 @@ public class FirebaseInteraction {
                 List<FurnitureModel> furnitureList = value.toObjects(FurnitureModel.class);
                 onSuccess.accept(furnitureList, null);
             } else {
-                onSuccess.accept(null, new Exception("No data found"));
+                onSuccess.accept(null, new FirebaseInteractionNoDataFoundException());
             }
         });
     }
@@ -119,7 +119,7 @@ public class FirebaseInteraction {
                 List<CartModel> cartList = value.toObjects(CartModel.class);
                 onSuccess.accept(cartList, null);
             } else {
-                onSuccess.accept(null, new Exception("No data found"));
+                onSuccess.accept(null, new FirebaseInteractionNoDataFoundException());
             }
         });
     }
@@ -157,7 +157,7 @@ public class FirebaseInteraction {
                 List<OrderModel> orderList = value.toObjects(OrderModel.class);
                 onSuccess.accept(orderList, null);
             } else {
-                onSuccess.accept(null, new Exception("No data found"));
+                onSuccess.accept(null, new FirebaseInteractionNoDataFoundException());
             }
         });
     }
@@ -168,5 +168,22 @@ public class FirebaseInteraction {
         ref.document(addressModel.getPath()).set(addressModel).addOnSuccessListener(aVoid -> {
             onAddressAdded.accept(null);
         }).addOnFailureListener(onAddressAdded::accept);
+    }
+
+    public void getAddress(BiConsumer<List<AddressModel>, Exception> onSuccess) {
+        String uid = firebaseAuth.getUid();
+        var ref = firebaseFirestore.collection(USER_DATABASE_PATH).document(uid).collection(ADDRESS_DATABASE_PATH);
+        ref.addSnapshotListener((value, error) -> {
+            if (error != null) {
+                onSuccess.accept(null, error);
+                return;
+            }
+            if (value != null && !value.isEmpty()) {
+                List<AddressModel> addressList = value.toObjects(AddressModel.class);
+                onSuccess.accept(addressList, null);
+            } else {
+                onSuccess.accept(null, new FirebaseInteractionNoDataFoundException());
+            }
+        });
     }
 }
