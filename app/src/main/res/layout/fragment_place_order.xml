@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/grid_2">
+    android:padding="@dimen/grid_2"
+    tools:context="com.aiyu.furniture.ui.fragment.placeorder.PlaceOrderFragment">
 
 
     <ScrollView
@@ -25,8 +26,8 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="@dimen/grid_3"
-                android:src="@drawable/ic_order_done"
                 android:scaleType="fitCenter"
+                android:src="@drawable/ic_order_done"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -304,11 +305,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/grid_0_5"
+                        android:text="@string/cod"
                         android:textAppearance="?attr/textAppearanceBody2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_view_payment_method_label"
-                        tools:text="Credit Card (VISA **** 1234)" />
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_payment_method_label" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -319,7 +320,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/grid_2"
-                android:text="@string/track_order"
+                android:text="@string/place_order"
                 app:layout_constraintBottom_toTopOf="@+id/button_continue_shopping"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -331,7 +332,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/grid_1"
                 android:layout_marginBottom="@dimen/grid_1"
-                android:text="@string/continue_shopping"
+                android:text="@string/cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

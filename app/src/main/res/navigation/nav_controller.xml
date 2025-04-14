@@ -99,6 +99,9 @@
         <argument
             android:name="forPlaceOrder"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_addressFragment_to_placeOrderFragment"
+            app:destination="@id/placeOrderFragment" />
     </fragment>
     <action android:id="@+id/action_global_addressFragment" app:destination="@id/addressFragment" />
     <fragment
@@ -109,5 +112,22 @@
         <argument
             android:name="order"
             app:argType="com.aiyu.furniture.core.database.model.OrderModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeOrderFragment"
+        android:name="com.aiyu.furniture.ui.fragment.placeorder.PlaceOrderFragment"
+        android:label="fragment_place_order"
+        tools:layout="@layout/fragment_place_order" >
+        <argument
+            android:name="order"
+            app:argType="com.aiyu.furniture.core.database.model.OrderModel" />
+        <action
+            android:id="@+id/action_placeOrderFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
+        <action
+            android:id="@+id/action_placeOrderFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/nav_controller"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
