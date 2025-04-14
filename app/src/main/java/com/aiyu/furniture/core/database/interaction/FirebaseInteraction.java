@@ -186,4 +186,12 @@ public class FirebaseInteraction {
             }
         });
     }
+
+    public void removeAddress(String path, Consumer<Exception> onAddressRemoved) {
+        String uid = firebaseAuth.getUid();
+        var ref = firebaseFirestore.collection(USER_DATABASE_PATH).document(uid).collection(ADDRESS_DATABASE_PATH);
+        ref.document(path).delete().addOnSuccessListener(aVoid -> {
+            onAddressRemoved.accept(null);
+        }).addOnFailureListener(onAddressRemoved::accept);
+    }
 }

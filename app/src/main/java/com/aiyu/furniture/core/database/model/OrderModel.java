@@ -3,51 +3,69 @@ package com.aiyu.furniture.core.database.model;
 
 public class OrderModel {
     private FurnitureModel furniture;
-    private Long orderedAt;
-    private String path;
     private double price;
     private OrderStates orderState;
+    private AddressModel address;
+    private Long orderedAt;
+    private String path;
 
-    public OrderModel() {
-    }
-
-    public OrderModel(FurnitureModel furniture, Long orderedAt, String path, Double price) {
+    public OrderModel(FurnitureModel furniture, double price, OrderStates orderState, AddressModel address, Long orderedAt, String path) {
         this.furniture = furniture;
+        this.price = price;
+        this.orderState = orderState;
+        this.address = address;
         this.orderedAt = orderedAt;
         this.path = path;
-        this.price = price;
-        this.orderState = OrderStates.values()[(int) (Math.random() * OrderStates.values().length)];
+    }
+
+    public OrderModel() {
     }
 
     public FurnitureModel getFurniture() {
         return furniture;
     }
 
-    public Long getOrderedAt() {
-        return orderedAt;
+    public void setFurniture(FurnitureModel furniture) {
+        this.furniture = furniture;
     }
 
-    public String getPath() {
-        return path;
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public OrderStates getOrderState() {
         return orderState;
     }
 
-    public void setFurniture(FurnitureModel furniture) {
-        this.furniture = furniture;
+    public void setOrderState(OrderStates orderState) {
+        this.orderState = orderState;
+    }
+
+    public AddressModel getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressModel address) {
+        this.address = address;
+    }
+
+    public Long getOrderedAt() {
+        return orderedAt;
     }
 
     public void setOrderedAt(Long orderedAt) {
         this.orderedAt = orderedAt;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public String getPath() {
+        return path;
     }
 
-    public double getPrice() {
-        return price;
+    public void setPath(String path) {
+        this.path = path;
     }
 }

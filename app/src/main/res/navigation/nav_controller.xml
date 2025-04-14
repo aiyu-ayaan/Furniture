@@ -87,4 +87,13 @@
             app:argType="com.aiyu.furniture.core.database.model.AddressModel"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.aiyu.furniture.ui.fragment.address.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address" >
+        <argument
+            android:name="forPlaceOrder"
+            app:argType="boolean" />
+    </fragment><action android:id="@+id/action_global_addressFragment" app:destination="@id/addressFragment"/>
 </navigation>
