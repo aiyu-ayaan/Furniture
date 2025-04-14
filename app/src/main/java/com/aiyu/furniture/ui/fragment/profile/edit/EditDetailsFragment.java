@@ -35,7 +35,6 @@ public class EditDetailsFragment extends BaseFragment {
         EditDetailsFragmentArgs args = EditDetailsFragmentArgs.fromBundle(getArguments());
         var user = args.getUser();
         binding.phoneLayout.getEditText().setText((user.getPhone() == null || user.getPhone().isBlank()) ? "" : user.getPhone());
-        binding.addressLayout.getEditText().setText((user.getAddress() == null || user.getAddress().isBlank()) ? "" : user.getAddress());
 
         binding.buttonSave.setOnClickListener(v -> {
             var phone = binding.phoneLayout.getEditText().getText().toString();
@@ -44,9 +43,6 @@ public class EditDetailsFragment extends BaseFragment {
                 Toast.makeText(requireContext(), "Can't be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
-            user.setAddress(
-                    address
-            );
             user.setPhone(
                     phone
             );

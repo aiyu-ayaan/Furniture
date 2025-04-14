@@ -9,7 +9,6 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String phone;
-    private String address;
     private String profilePic;
     private String uid;
     private Long createdAt;
@@ -17,11 +16,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String name, String email, String phone, String address, String profilePic, String uid) {
+    public User(String name, String email, String phone, String profilePic, String uid) {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.address = address;
         this.profilePic = profilePic;
         this.uid = uid;
         this.createdAt = System.currentTimeMillis();
@@ -52,13 +50,6 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getProfilePic() {
         return profilePic;
