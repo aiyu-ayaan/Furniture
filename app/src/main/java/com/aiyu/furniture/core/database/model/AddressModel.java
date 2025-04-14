@@ -98,4 +98,8 @@ public class AddressModel implements Serializable {
         var landmark = this.landmark.isBlank() ? "_" : this.landmark;
         this.path = name + phone + houseName + area + landmark + postalCode + state;
     }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

@@ -3,15 +3,19 @@ package com.aiyu.furniture.ui.fragment.placeorder;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 
 import com.aiyu.furniture.R;
+import com.aiyu.furniture.core.database.interaction.FirebaseInteraction;
 import com.aiyu.furniture.databinding.FragmentPlaceOrderBinding;
 import com.aiyu.furniture.utils.BaseFragment;
 import com.bumptech.glide.Glide;
+
+import javax.inject.Inject;
 
 public class PlaceOrderFragment extends BaseFragment {
     private FragmentPlaceOrderBinding binding;
@@ -20,6 +24,10 @@ public class PlaceOrderFragment extends BaseFragment {
     public PlaceOrderFragment() {
         super(R.layout.fragment_order_details);
     }
+
+
+    @Inject
+    FirebaseInteraction firebaseInteraction;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -40,14 +48,17 @@ public class PlaceOrderFragment extends BaseFragment {
         binding.textViewShippingAddress.setText(order.getAddress().getName() + "\n" + order.getAddress().getArea() + "\n" + order.getAddress().getHouseName() + ", " + order.getAddress().getArea() + " " + order.getAddress().getLandmark() + "\n" + order.getAddress().getPostalCode() + "\n" + order.getAddress().getState() + "\n");
 
         binding.buttonTrackOrder.setOnClickListener(view1 -> {
-            Navigation.findNavController(view).navigate(
-                    PlaceOrderFragmentDirections.actionPlaceOrderFragmentToHomeFragment()
-            );
+            firebaseInteraction.addOrder(order, e -> {
+                if (e != null) {
+                    Toast.makeText(requireActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Toast.makeText(requireActivity(), "Order Placed", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(PlaceOrderFragmentDirections.actionPlaceOrderFragmentToHomeFragment());
+            });
         });
         binding.buttonContinueShopping.setOnClickListener(view2 -> {
-            Navigation.findNavController(view).navigate(
-                    PlaceOrderFragmentDirections.actionPlaceOrderFragmentToOrderDetailsFragment(order)
-            );
+            Navigation.findNavController(view).navigate(PlaceOrderFragmentDirections.actionPlaceOrderFragmentToOrderDetailsFragment(order));
         });
     }
 }

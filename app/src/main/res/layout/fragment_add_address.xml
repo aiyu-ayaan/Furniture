@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:context="com.aiyu.furniture.ui.fragment.address.AddAddressFragment"
     android:layout_height="match_parent"
-    android:padding="@dimen/grid_1">
+    android:padding="@dimen/grid_1"
+    tools:context="com.aiyu.furniture.ui.fragment.address.AddAddressFragment">
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_address_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="?attr/textInputOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/full_name_required"
@@ -31,7 +32,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_address_phone_number"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="?attr/textInputOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/grid_1"
@@ -44,7 +45,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true"
             android:inputType="phone"
             android:textColor="@color/black"
             tools:text="+91 1234567890" />
@@ -53,7 +53,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_address_house_number"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="?attr/textInputOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/grid_1"
@@ -66,7 +66,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true"
             android:inputType="textCapSentences|textMultiLine"
             android:textColor="@color/black"
             tools:text="D wing,Time square Mumbai" />
@@ -75,7 +74,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_area"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="?attr/textInputOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/grid_1"
@@ -88,7 +87,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true"
             android:inputType="textCapSentences|textMultiLine"
             android:textColor="@color/black"
             tools:text="Andheri East" />
@@ -97,7 +95,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_address_landmark"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="?attr/textInputOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/grid_1"
@@ -110,7 +108,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true"
             android:inputType="textCapSentences|textMultiLine"
             android:textColor="@color/black"
             tools:text="Near Some place" />
@@ -119,7 +116,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_address_pin"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="?attr/textInputOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/grid_1"
@@ -132,7 +129,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true"
             android:inputType="number"
             android:maxLength="6"
             android:textColor="@color/black"
@@ -148,19 +144,18 @@
         android:layout_marginTop="@dimen/grid_1"
         android:hint="@string/select_state"
         app:endIconMode="dropdown_menu"
-        app:layout_constraintTop_toBottomOf="@+id/text_field_address_pin"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/text_field_address_pin">
 
         <AutoCompleteTextView
             android:id="@+id/auto_complete_state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:entries="@array/indian_states"
-            android:textColor="@color/black"
             android:focusable="true"
-            android:clickable="true" />
+            android:inputType="none"
+            android:textColor="@color/black"
+            app:simpleItems="@array/indian_states" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -174,5 +169,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

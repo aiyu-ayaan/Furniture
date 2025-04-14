@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.aiyu.furniture.R;
@@ -39,6 +40,10 @@ public class AddressFragment extends BaseFragment {
         binding.recyclerViewAddress.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewAddress.setAdapter(adapter);
         binding.recyclerViewAddress.setHasFixedSize(true);
+        binding.addAddressButton.setOnClickListener(view1 -> {
+            Navigation.findNavController(view)
+                    .navigate(AddressFragmentDirections.actionAddressFragmentToAddAddressFragment(null));
+        });
         firebaseInteraction.getAddress((addressModels, e) -> {
             if (e != null) {
                 binding.recyclerViewAddress.setVisibility(View.GONE);
@@ -58,18 +63,35 @@ public class AddressFragment extends BaseFragment {
             adapter.setAddressClickListener(new AddressAdapter.AddressClickListener() {
                 @Override
                 public void onAddressClick(AddressModel addressModel) {
-                    if(args.getForPlaceOrder()){
-//                        TODO: navigate place order screens
+                    if (args.getForPlaceOrder()) {
+
                     }
                 }
 
                 @Override
                 public void onAddressEditClick(AddressModel addressModel) {
+                    Navigation.findNavController(view)
+                            .navigate(AddressFragmentDirections.actionAddressFragmentToAddAddressFragment(addressModel));
                 }
 
                 @Override
                 public void onAddressDeleteClick(AddressModel addressModel) {
-
+                    firebaseInteraction.removeAddress(addressModel.getPath(), e1 -> {
+                        if (e1 != null) {
+                            binding.recyclerViewAddress.setVisibility(View.GONE);
+                            binding.linearLayoutLoading.setVisibility(View.GONE);
+                            binding.linearLayoutEmptyAddress.setVisibility(View.VISIBLE);
+                            if (e1 instanceof FirebaseInteractionNoDataFoundException) {
+                                binding.textViewMessage.setText("No address found");
+                                return;
+                            }
+                            binding.textViewMessage.setText("Unable to fetch address");
+                            return;
+                        }
+                        binding.recyclerViewAddress.setVisibility(View.VISIBLE);
+                        binding.linearLayoutLoading.setVisibility(View.GONE);
+                        binding.linearLayoutEmptyAddress.setVisibility(View.GONE);
+                    });
                 }
             });
         });

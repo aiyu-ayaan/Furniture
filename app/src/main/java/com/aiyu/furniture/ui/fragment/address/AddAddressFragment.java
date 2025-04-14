@@ -83,7 +83,8 @@ public class AddAddressFragment extends BaseFragment {
             }
 
             AddressModel addressModel = new AddressModel(name, phone, houseName, area, landmark, postalCode, state);
-            addressModel.setPath();
+            if (args != null) addressModel.setPath(args.getAddress().getPath());
+            else addressModel.setPath();
             firebaseInteraction.addAddress(addressModel, e -> {
                 if (e != null) {
                     Toast.makeText(requireContext(), "Error in Saving Address!!", Toast.LENGTH_SHORT).show();

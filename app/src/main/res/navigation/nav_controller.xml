@@ -68,9 +68,6 @@
         <argument
             android:name="user"
             app:argType="com.aiyu.furniture.core.database.model.User" />
-        <action
-            android:id="@+id/action_editDetailsFragment_to_addAddressFragment"
-            app:destination="@id/addAddressFragment" />
     </fragment>
     <fragment
         android:id="@+id/ordersFragment"
@@ -102,6 +99,9 @@
         <action
             android:id="@+id/action_addressFragment_to_placeOrderFragment"
             app:destination="@id/placeOrderFragment" />
+        <action
+            android:id="@+id/action_addressFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
     </fragment>
     <action android:id="@+id/action_global_addressFragment" app:destination="@id/addressFragment" />
     <fragment
