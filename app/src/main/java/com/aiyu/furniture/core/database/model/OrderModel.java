@@ -1,7 +1,11 @@
 package com.aiyu.furniture.core.database.model;
 
+import androidx.annotation.Keep;
 
-public class OrderModel {
+import java.io.Serializable;
+
+@Keep
+public class OrderModel implements Serializable {
     private FurnitureModel furniture;
     private double price;
     private OrderStates orderState;

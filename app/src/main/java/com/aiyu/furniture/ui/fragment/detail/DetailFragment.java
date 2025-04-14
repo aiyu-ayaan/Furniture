@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 
+import com.aiyu.furniture.NavControllerDirections;
 import com.aiyu.furniture.R;
 import com.aiyu.furniture.core.database.interaction.FirebaseInteraction;
 import com.aiyu.furniture.core.database.model.CartModel;
@@ -71,6 +72,10 @@ public class DetailFragment extends BaseFragment {
                 }
                 Toast.makeText(getContext(), Objects.requireNonNull(e.getLocalizedMessage()), Toast.LENGTH_SHORT).show();
             });
+        });
+        binding.buttonBuyNow.setOnClickListener(view2 -> {
+            Navigation.findNavController(view)
+                    .navigate(NavControllerDirections.actionGlobalAddressFragment(true));
         });
     }
 }

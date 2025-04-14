@@ -76,7 +76,11 @@
         android:id="@+id/ordersFragment"
         android:name="com.aiyu.furniture.ui.fragment.orders.OrdersFragment"
         android:label="@string/orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addAddressFragment"
         android:name="com.aiyu.furniture.ui.fragment.address.AddAddressFragment"
@@ -90,10 +94,20 @@
     <fragment
         android:id="@+id/addressFragment"
         android:name="com.aiyu.furniture.ui.fragment.address.AddressFragment"
-        android:label="fragment_address"
+        android:label="@string/address"
         tools:layout="@layout/fragment_address" >
         <argument
             android:name="forPlaceOrder"
             app:argType="boolean" />
-    </fragment><action android:id="@+id/action_global_addressFragment" app:destination="@id/addressFragment"/>
+    </fragment>
+    <action android:id="@+id/action_global_addressFragment" app:destination="@id/addressFragment" />
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.aiyu.furniture.ui.fragment.orders.OrderDetailsFragment"
+        android:label="@string/order_details"
+        tools:layout="@layout/fragment_order_details" >
+        <argument
+            android:name="order"
+            app:argType="com.aiyu.furniture.core.database.model.OrderModel" />
+    </fragment>
 </navigation>
