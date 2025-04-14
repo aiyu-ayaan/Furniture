@@ -13,13 +13,13 @@ public class OrderModel implements Serializable {
     private Long orderedAt;
     private String path;
 
-    public OrderModel(FurnitureModel furniture, double price, OrderStates orderState, AddressModel address, Long orderedAt, String path) {
+    public OrderModel(FurnitureModel furniture, double price, AddressModel address, Long orderedAt, String path) {
         this.furniture = furniture;
         this.price = price;
-        this.orderState = orderState;
         this.address = address;
         this.orderedAt = orderedAt;
         this.path = path;
+        this.orderState = OrderStates.values()[(int) (Math.random() * OrderStates.values().length)];
     }
 
     public OrderModel() {

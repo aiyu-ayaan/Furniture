@@ -63,8 +63,13 @@ public class AddressFragment extends BaseFragment {
             adapter.setAddressClickListener(new AddressAdapter.AddressClickListener() {
                 @Override
                 public void onAddressClick(AddressModel addressModel) {
-                    if (args.getForPlaceOrder()) {
-
+                    if (args.getForPlaceOrder() && args.getOrder() != null) {
+                        var model = args.getOrder();
+                        model.setAddress(addressModel);
+                        Navigation.findNavController(view)
+                                .navigate(
+                                        AddressFragmentDirections.actionAddressFragmentToPlaceOrderFragment(model)
+                                );
                     }
                 }
 

@@ -56,7 +56,7 @@ public class ProfileFragment extends BaseFragment {
                 });
                 binding.savedAddressButton.setOnClickListener(
                         view1 -> {
-                            var action = NavControllerDirections.actionGlobalAddressFragment(false);
+                            var action = NavControllerDirections.actionGlobalAddressFragment(false, null);
                             Navigation.findNavController(binding.getRoot()).navigate(action);
                         }
                 );

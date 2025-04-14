@@ -12,6 +12,7 @@ import com.aiyu.furniture.NavControllerDirections;
 import com.aiyu.furniture.R;
 import com.aiyu.furniture.core.database.interaction.FirebaseInteraction;
 import com.aiyu.furniture.core.database.model.CartModel;
+import com.aiyu.furniture.core.database.model.OrderModel;
 import com.aiyu.furniture.databinding.FragmentDetailScreenBinding;
 import com.aiyu.furniture.utils.BaseFragment;
 import com.bumptech.glide.Glide;
@@ -75,7 +76,16 @@ public class DetailFragment extends BaseFragment {
         });
         binding.buttonBuyNow.setOnClickListener(view2 -> {
             Navigation.findNavController(view)
-                    .navigate(NavControllerDirections.actionGlobalAddressFragment(true));
+                    .navigate(NavControllerDirections.actionGlobalAddressFragment(
+                            true,
+                            new OrderModel(
+                                    model,
+                                    model.getPrice() * quantity,
+                                    null,
+                                    System.currentTimeMillis(),
+                                    ""
+                            )
+                    ));
         });
     }
 }

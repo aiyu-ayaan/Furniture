@@ -17,12 +17,15 @@ import com.bumptech.glide.Glide;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class PlaceOrderFragment extends BaseFragment {
     private FragmentPlaceOrderBinding binding;
     private PlaceOrderFragmentArgs args;
 
     public PlaceOrderFragment() {
-        super(R.layout.fragment_order_details);
+        super(R.layout.fragment_place_order);
     }
 
 
@@ -57,7 +60,7 @@ public class PlaceOrderFragment extends BaseFragment {
                 Navigation.findNavController(view).navigate(PlaceOrderFragmentDirections.actionPlaceOrderFragmentToHomeFragment());
             });
         });
-        binding.buttonContinueShopping.setOnClickListener(view2 -> {
+        binding.buttonCancel.setOnClickListener(view2 -> {
             Navigation.findNavController(view).navigate(PlaceOrderFragmentDirections.actionPlaceOrderFragmentToOrderDetailsFragment(order));
         });
     }
