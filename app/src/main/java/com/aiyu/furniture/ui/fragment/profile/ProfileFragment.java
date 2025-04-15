@@ -54,12 +54,10 @@ public class ProfileFragment extends BaseFragment {
                     var action = ProfileFragmentDirections.actionProfileFragmentToEditDetailsFragment(user);
                     Navigation.findNavController(binding.getRoot()).navigate(action);
                 });
-                binding.savedAddressButton.setOnClickListener(
-                        view1 -> {
-                            var action = NavControllerDirections.actionGlobalAddressFragment(false, null);
-                            Navigation.findNavController(binding.getRoot()).navigate(action);
-                        }
-                );
+                binding.savedAddressButton.setOnClickListener(view1 -> {
+                    var action = NavControllerDirections.actionGlobalAddressFragment(false, null, false);
+                    Navigation.findNavController(binding.getRoot()).navigate(action);
+                });
             }
         });
 
