@@ -56,6 +56,16 @@ public class PlaceOrderFragment extends BaseFragment {
                     Toast.makeText(requireActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (args.getFromCart()) {
+                    firebaseInteraction.removeItemFromCart(
+                            order.getFurniture().getPath(),
+                            e1 -> {
+                                if (e1 != null) {
+                                    Toast.makeText(requireActivity(), "Unable to remove item from cart!!.Error message " + e1.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                    );
+                }
                 Toast.makeText(requireActivity(), "Order Placed", Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(view).navigate(PlaceOrderFragmentDirections.actionPlaceOrderFragmentToHomeFragment());
             });

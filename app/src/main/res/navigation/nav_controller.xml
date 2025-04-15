@@ -106,6 +106,9 @@
             android:name="order"
             app:argType="com.aiyu.furniture.core.database.model.OrderModel"
             app:nullable="true" />
+        <argument
+            android:name="fromCart"
+            app:argType="boolean" />
     </fragment>
     <action
         android:id="@+id/action_global_addressFragment"
@@ -135,5 +138,8 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/nav_controller"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="fromCart"
+            app:argType="boolean" />
     </fragment>
 </navigation>

@@ -84,7 +84,8 @@ public class DetailFragment extends BaseFragment {
                                     null,
                                     System.currentTimeMillis(),
                                     ""
-                            )
+                            ),
+                            args.getFromCart()
                     ));
         });
     }

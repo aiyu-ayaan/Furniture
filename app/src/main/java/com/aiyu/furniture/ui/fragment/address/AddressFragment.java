@@ -68,7 +68,7 @@ public class AddressFragment extends BaseFragment {
                         model.setAddress(addressModel);
                         Navigation.findNavController(view)
                                 .navigate(
-                                        AddressFragmentDirections.actionAddressFragmentToPlaceOrderFragment(model)
+                                        AddressFragmentDirections.actionAddressFragmentToPlaceOrderFragment(model,args.getFromCart())
                                 );
                     }
                 }
