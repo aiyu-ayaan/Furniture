@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aiyu.furniture.R;
 import com.aiyu.furniture.core.database.model.FurnitureModel;
 import com.aiyu.furniture.databinding.ItemFurnitureBinding;
+import com.aiyu.furniture.utils.Images;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
@@ -65,7 +66,15 @@ public class RecyclerViewAdapter extends ListAdapter<FurnitureModel, RecyclerVie
             binding.textViewProductName.setText(furnitureModel.getName());
             binding.textViewPrice.setText("₹ " + furnitureModel.getPrice());
             binding.textViewRating.setText(String.valueOf(furnitureModel.getStar()));
-            Glide.with(binding.getRoot()).load(R.drawable.login_screen_img).fitCenter().error(R.drawable.login_screen_img).transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageViewProduct);
+
+            var image = Images.getRandomImage();
+            Images.extractDominantColor(
+                    binding.getRoot().getContext(), image, binding.cardViewProductImage);
+            furnitureModel.setImageRes(image);
+            Glide.with(binding.getRoot()).load(image)
+                    .fitCenter().error(R.drawable.login_screen_img)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(binding.imageViewProduct);
             binding.getRoot().setOnClickListener(v -> {
                 if (onClickListener != null) onClickListener.onClick(furnitureModel);
             });

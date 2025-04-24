@@ -10,6 +10,7 @@
     tools:context="com.aiyu.furniture.ui.fragment.detail.DetailFragment">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#84a7a9"

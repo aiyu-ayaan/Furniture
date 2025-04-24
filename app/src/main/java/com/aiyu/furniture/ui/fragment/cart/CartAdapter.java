@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aiyu.furniture.core.database.model.CartModel;
 import com.aiyu.furniture.databinding.ItemCartBinding;
+import com.aiyu.furniture.utils.Images;
+import com.bumptech.glide.Glide;
 
 public class CartAdapter extends ListAdapter<CartModel, CartAdapter.CartViewHolder> {
 
@@ -72,6 +74,11 @@ public class CartAdapter extends ListAdapter<CartModel, CartAdapter.CartViewHold
                     cartClickListener.onItemRemove(cartModel);
                 }
             });
+
+            Glide.with(binding.getRoot())
+                    .load(Images.getRandomImage())
+                    .centerCrop()
+                    .into(binding.imageViewCartProduct);
             binding.getRoot().setOnClickListener(view -> {
                 if (cartClickListener != null) {
                     cartClickListener.onItemClick(cartModel);

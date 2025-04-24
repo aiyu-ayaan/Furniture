@@ -15,6 +15,7 @@ import com.aiyu.furniture.core.database.model.CartModel;
 import com.aiyu.furniture.core.database.model.OrderModel;
 import com.aiyu.furniture.databinding.FragmentDetailScreenBinding;
 import com.aiyu.furniture.utils.BaseFragment;
+import com.aiyu.furniture.utils.Images;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
@@ -60,7 +61,13 @@ public class DetailFragment extends BaseFragment {
                 binding.textViewQuantity.setText(String.valueOf(quantity));
             }
         });
-        Glide.with(binding.getRoot()).load(R.drawable.login_screen_img).fitCenter().error(R.drawable.login_screen_img).transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageViewProduct);
+        Glide.with(binding.getRoot()).load(
+                        model.getImageRes()
+                ).fitCenter()
+                .error(R.drawable.login_screen_img).transition(DrawableTransitionOptions.withCrossFade()).into(binding.imageViewProduct);
+
+        Images.extractDominantColor(
+                binding.getRoot().getContext(), model.getImageRes(), binding.cardViewBack);
 
         binding.buttonAddToCart.setVisibility(args.getFromCart() ? View.GONE : View.VISIBLE);
         binding.buttonAddToCart.setOnClickListener(view1 -> {

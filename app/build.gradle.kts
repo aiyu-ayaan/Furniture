@@ -64,6 +64,8 @@ dependencies {
 
     implementation(libs.json)
     implementation(libs.lifecycle.livedata.ktx)
+
+    implementation("androidx.palette:palette:1.0.0")
 }
 
 kapt {

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aiyu.furniture.R;
 import com.aiyu.furniture.core.database.model.OrderModel;
 import com.aiyu.furniture.databinding.ItemOrderBinding;
+import com.aiyu.furniture.utils.Images;
 import com.bumptech.glide.Glide;
 
 public class OrderAdapter extends ListAdapter<OrderModel, OrderAdapter.OrderViewHolder> {
@@ -73,9 +74,10 @@ public class OrderAdapter extends ListAdapter<OrderModel, OrderAdapter.OrderView
             binding.textViewProductDescription.setText(orderDetails.getFurniture().getDescription());
             binding.textViewPrice.setText("₹ " + orderDetails.getFurniture().getPrice());
             Glide.with(binding.getRoot())
-                    .load(R.drawable.login_screen_img)
+                    .load(Images.getRandomImage())
                     .centerCrop()
                     .into(binding.imageViewProduct);
+
             binding.getRoot().setOnClickListener(
                     view -> {
                         if (setOnClickListener != null) {

@@ -15,6 +15,7 @@ public class FurnitureModel implements Serializable {
     private Long price;
 
     private int star;
+    private int imageRes;
 
 
     public FurnitureModel(String name, String description, String imageUrl, Category category, String path, Long price, int star) {
@@ -25,6 +26,7 @@ public class FurnitureModel implements Serializable {
         this.path = path;
         this.price = price;
         this.star = star;
+        this.imageRes = 0;
     }
 
     public FurnitureModel() {
@@ -84,6 +86,14 @@ public class FurnitureModel implements Serializable {
 
     public void setStar(int star) {
         this.star = star;
+    }
+
+    public int getImageRes() {
+        return imageRes;
+    }
+
+    public void setImageRes(int imageRes) {
+        this.imageRes = imageRes;
     }
 
 }
