@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity implements GetItems {
             } else {
                 binding.bottomNavigationView.setVisibility(View.GONE);
             }
-            if (navDestination.getId() == R.id.detailFragment || navDestination.getId() == R.id.logInFragment) {
-                binding.toolbar.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.blue_color, null));
-            } else {
-                binding.toolbar.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.surface, null));
-            }
+//            if (navDestination.getId() == R.id.detailFragment || navDestination.getId() == R.id.logInFragment) {
+//                binding.toolbar.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.blue_color, null));
+//            } else {
+//                binding.toolbar.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.surface, null));
+//            }
             if (navDestination.getId() == R.id.logInFragment) {
                 binding.toolbar.setVisibility(View.GONE);
             } else {
